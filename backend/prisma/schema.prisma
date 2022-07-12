@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id          String   @id @default(cuid())
+  code        String
+  name        String
+  mobile      String
+  dateOfBirth DateTime
+  address     String
+
+  // Định nghĩa quan hệ 1-n
+  Category     Category? @relation(fields: [categoryId], references: [id])
+  categoryId   String?
+  Employee     Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+}
+
+model Category {
+  id         String     @id @default(cuid())
+  code       String
+  name       String
+  custommers Customer[]
+}
+
+model Employee {
+  id        String     @id @default(cuid())
+  code      String
+  name      String
+  customers Customer[]
+}

@@ -1,0 +1,33 @@
+@import url('./common/common.css');
+@import url('./base/botton.css');
+@import url('./base/icon.css');
+@import url('./base/combobox.css');
+@import url('./base/input.css');
+@import url('./base/table.css');
+@import url('./base/paging-navigation.css');
+@import url('./base/toast-messenger.css');
+@import url('./base/popup.css');
+@import url('./base/icon.css');
+@import url('./layout/content.css');
+@import url('./layout/header.css');
+@import url('./layout/navbar.css');
+body{
+    font-family: MISA Font ;
+    font-size: 13px;
+    margin: 0;
+
+}
+/* font chu */
+@font-face {
+    font-family: MISA Font ;
+    src: url('../content/font/GoogleSans-Regular.otf');
+}
+
+@font-face {
+    font-family: MISA Font Bold ;
+    src: url('../content/font/GoogleSans-Bold.otf');
+}
+@font-face {
+    font-family: MISA Font Italic ;
+    src: url('../content/font/GoogleSans-Italic.otf');
+}

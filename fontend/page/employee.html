@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý khách hàng</title>
+    <!-- Phải dùng đúng phiên bản nha, cái icon kia của phiên bản 5 -->
+    <link rel="stylesheet" href="../content/font/fontawesome-5.15.1/css/all.css">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/page/employee.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="m-logo-box">
+            <div class="m-toggle"></div>
+            <div class="m-logo-page"></div>
+
+
+        </div>
+        <div class="m-navbar-box">
+            <div class="m-menu-item menu-item-active">
+                <div class="m-menu-item-icon m-icon icon-dasboard"></div>
+                <div class="m-menu-item-text">Tổng quan</div>
+            </div>
+            <div class="m-menu-item">
+                <div class="m-menu-item-icon m-icon icon-report"></div>
+                <div class="m-menu-item-text">Báo cáo</div>
+            </div>
+            <div class="m-menu-item">
+                <div class="m-menu-item-icon m-icon icon-customer"></div>
+                <div class="m-menu-item-text">Danh sách khách hàng</div>
+            </div>
+            <div class="m-menu-item">
+                <div class="m-menu-item-icon m-icon icon-setting"></div>
+                <div class="m-menu-item-text">Cài đặt</div>
+            </div>
+        </div>
+    </div>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="m-header-left">
+            <div class="m-header-l-text">
+                DgDg
+            </div>
+            <!-- <div class="m-header-l-icon"><i class="fas fa-caret-down"></i></div> -->
+        </div>
+        <div class="m-header-right">
+            <div class="m-header-r-avatar icon-header-avatar" ></div>
+            <div class="m-header-r-text">
+                Nông Thị Thùy Dung
+            </div>
+            <div class="m-header-r-more"><i class="fas fa-ellipsis-h"></i></div>
+        </div>
+
+    </div>
+    <!-- CONTENT-->
+    <div class="content">
+        <!-- CONTENT TITTLE-->
+        <div class="m-content-tittle">
+            <div class="m-tittle-left">
+                <div class="m-tittle-l-text">Danh sách khách hàng</div>
+            </div>
+            <div class="m-tittle-right">
+                <div class="m-row">
+                    <button class="m-btn" id="m-btn-add-e">
+                        <div class="m-btn-icon m-icon m-icon-add-employee"></div>
+                        <div id="btnAddEmployee" class="m-btn-text">Thêm mới khách hàng</div>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+        <!-- CONTENT SEARCH -->
+        <div class="m-content-search">
+            <div class="m-content-search-left" >
+                <div class="m-row">
+                    <input id="inputSearch" class="m-input m-input-icon" type="text" placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại" >
+                
+                </div>
+                <div class="m-row m-l-department">
+                    <!-- <div class="m-content-chose-form">
+                        <div class="m-chose-form-text">
+                            Tất cả nhân viên
+                        </div>
+                        <div class="m-chose-form-icon"><i class="fas fa-caret-down"></i></div>
+                    </div> -->
+                    <!-- <div class="m-chose-list">
+                        <div class="m-chose-list-op">Nông Thị Thùy Dung</div>
+                        <div class="m-chose-list-op">Nguyễn Trần Kiên</div>
+                        <div class="m-chose-list-op">Hoàng Thị Mỹ Linh</div>
+                    </div> -->
+                    <select id="slNV" class="m-combobox" name="" >
+                        <option value="0" >Tất cả nhân viên</option>
+                        <option value="1">Nông Thị Thùy Dung</option>
+                        <option value="2">Nguyễn Trần Kiên</option>
+                        <option value="3">Hoàng Thị Mỹ Linh</option>
+                            
+                    </select>
+                </div>
+                <div class="m-row m-l-location">
+                    <select id="slLoai" class="m-combobox" name=""  >
+                        <option value="0" >Tất cả khách hàng</option>
+                        <option value="1">Khách hàng thường</option>
+                        <option value="2">Khách hàng mới</option>
+                        <option value="3">Khách hàng tiềm năng</option>
+                        <option value="4">Khách hàng VIP</option>
+                    </select>
+                    
+                </div>
+                <div class="m-row">
+                    <button id="btn-submit" class="m-btn m-btn-text" >Bộ lọc</button>
+                </div>
+
+            </div>
+            
+            <div class="m-content-search-right">
+                <div>
+                    <button id="btnDelete" class="btn-delete">
+                        <!-- <i class="fas fa-trash-alt"></i> -->
+                        <i class="fas fa-user-times"></i>
+                    </button>
+                </div>
+                
+                <div>
+                    <button id="btnRefresh" onclick={loaddata()} class="fas fa-sync-alt"></button>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT TABLE -->
+        <div class="m-content-table">
+            <div class="m-row">
+                <div class="m-grid">
+                    <table id="tbdlEmloyeesList" class="m-table" border="1">
+                        <thead>
+                            <tr>
+                                <th class="text-align-left" style="width: 100px;">Mã khách hàng</th>
+                                <th class="text-align-left" style='width: 210px;'>Khách hàng</th>
+                                <!-- <th class="text-align-left" style="width: 70px;">Nhân viên chăm sóc</th> -->
+                                <th class="text-align-center" style="width: 70px;">Ngày sinh</th>
+                                <th class="text-align-center" style="width: 90px;">Điện thoại</th>
+                                <th class="text-align-left" style="width: 130px;">Địa chỉ</th>
+                                <!-- <th class="text-align-left">Mã nhân viên</th> -->
+                                <th class="text-align-left">Nhân viên chăm sóc</th>
+                                
+                                <th class="text-align-left" style="width: 120px;">Loại khách hàng</th>
+                                <!-- <th class="text-align-right" style="width: 100px;">Mức lương</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="m-table-paging">
+            <div class="m-paging-left">Hiển thị 01-08/100 khách hàng</div>
+            <div class="m-paging-center">
+                
+                <div class="m-paging-first" onclick="loadPage(1)"></div>
+                <div class="m-paging-prev" onclick="loadPage(c-1)" ></div>
+               
+                <div class="m-paging-number">
+                    <!-- <div class="page-number" onclick={loadPage(1)}>2</div>
+                    <div class="page-number" onclick={loadPage(2)}>3</div>
+                    <div class="page-number" onclick={loadPage(4)}>4</div>
+                    <div class="page-number" onclick={loadPage(5)}>5</div>
+                    <div class="page-number" onclick={loadPage(5)}>6</div> -->
+                 
+                </div>
+                <div class="m-paging-next" onclick="loadPage(c+1)"></div>
+                <div class="m-paging-last" onclick="loadPage(maxPage)"></div>
+            </div>
+            <div class="m-paging-right">
+                <!-- <select class="m-combobox" name="" id="">
+                    <option value="10">10 khách hàng/ trang</option>
+                    <option value="10">20 khách hàng/ trang</option>
+                    <option value="10">30 khách hàng/ trang</option>
+                    <option value="10">40 khách hàng/ trang</option>
+                </select> -->
+            </div>
+            
+        </div>
+    </div>
+
+    </div>
+    <div id="dlgPopup" class="m-dialog" style="display: none" >
+        <div class="m-row"></div>
+            <div class="m-popup">
+                <div class="m-popup-header">
+                    <div class="m-popup-header-title">Thông tin khách hàng</div>
+                    <div id="btnCloseDialog" class="m-popup-close"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="m-popup-centent">
+                    <div>
+                        <div class="m-row">
+                            <div class="m-lable">Mã khách hàng</div>
+                            <input class="m-input" type="text" id="txtCustomerCode" fieldName = "code">
+                        </div>
+                        <div class="m-row">
+                            <div class="m-lable">Họ và tên</div>
+                            <input class="m-input" type="text" id="txtFullName" fieldName = "name">
+                        </div>
+                        <div class="m-row">
+                            <div class="m-lable">Ngày sinh</div>
+                            <input class="m-input" type="date" id="dtDateOfBirthday" fieldName = "dateOfBirth">
+                        </div>
+                        <div class="m-row">
+                            <div class="m-lable">Số điện thoại</div>
+                            <input class="m-input" type="text" id="mobile" fieldName= "mobile">
+                        </div>
+                        <div class="m-row">
+                            <div class="m-lable">Địa chỉ</div>
+                            <input class="m-input" type="text" id="txtAddress" fieldName = "address">
+                        </div>
+                        <!-- <div class="m-row">
+                            <div class="m-lable">Mã NV</div>
+                            <input class="m-input" type="text" id="txtEmployeeCode" fieldName = "employeeId">
+                        </div> -->
+                        <div class="m-row">
+                            <div class="m-lable">NVCS</div>
+                            <select id="cbNV" class="m-combobox" name=""  fieldName = "employeeId">
+                               
+                            </select>
+                        </div>
+                        <div class="m-row">
+                            <div class="m-lable">Loại KH</div>
+                            <select id="cbLoai"  class="m-combobox" name=""  fieldName = "categoryId">
+                                
+                            </select>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="m-popup-footer">
+                    <button id="btnClose" class="m-btn m-btn-nobackground">Hủy</button>
+                    <button id="btnSave" class="m-btn">Lưu</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- <div class="m-loading">
+        <div class="m-loading-icon"></div>
+    </div>
+
+    <div class="m-toast-box">
+        <div class="m-toast-item m-toast-delete">
+            <div class="m-toast-msg">
+                
+                <div class="toast-msg-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="toast-msg-text">Xóa thành công</div>
+                <div class="toast-msg-close"><i class="fas fa-times"></i></div>
+                
+            </div>
+        </div>
+        <div class="m-toast-item m-toast-info">
+            <div class="m-toast-msg">
+               
+                <div class="toast-msg-icon m-icon-info"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="toast-msg-text">Thêm mới thành công</div>
+                <div class="toast-msg-close m-icon-info"><i class="fas fa-times"></i></div>
+                
+            </div>
+        </div>
+    </div>
+     -->
+    <!-- Javascript -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/base/enum.js"></script>
+    <script src="/js/base/common.js"></script>
+    <script src="/js/pagination.js"></script>
+    <script src="/js/page/employee.js"></script>
+    
+    
+   
+</body>
+</html>

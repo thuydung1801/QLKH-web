@@ -1,0 +1,50 @@
+.m-btn{
+    
+    /* chinh 1 dong */
+    display: flex;
+    /* chinh giua */
+    align-items: center;
+    background-color: #019160;
+    border-radius: 4px;
+    height: 40px;
+    color: #ffffff;
+    padding: 0 24px;
+    text-align: center;
+    border: unset;
+    cursor: pointer;
+    min-width: 100px;
+    white-space: nowrap;
+    
+
+}
+
+.m-btn:hover,
+.m-btn:focus{
+    background-color: #2FBE8E;
+}
+
+.m-btn:active{
+    background-color: #01B075;
+}
+/* Button icon */
+
+.m-btn .m-btn-icon{
+    left: 8px;
+    width: 16px;
+    height: 24px;
+    margin-left: -8px;
+    margin-right:8px ;
+   
+}
+.m-btn .m-btn-text{
+    
+    margin-right: -8px;
+}
+.m-btn-nobackground{
+    background: none !important ;
+    color: #000;
+}
+.m-btn-nobackground:hover,
+.m-btn-nobackground:focus{
+    background-color: #8a8888 !important;
+}

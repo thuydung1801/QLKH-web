@@ -1,0 +1,38 @@
+.m-icon{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.m-icon-warning{
+    color: rgb(247, 191, 88);
+}
+
+.m-menu-item-icon{
+    width: 20px;
+    height: 20px;
+ 
+}
+.m-btn-icon{
+    width: 20px;
+    height: 20px;
+}
+.icon-dasboard{
+    background-image: url("../../content/icon/dashboard.png");
+
+}
+.icon-report{
+    background-image: url("../../content/icon/report.png");
+
+}
+.icon-setting{
+    background-image: url("../../content/icon/setting.png");
+
+}
+.icon-customer{
+    background-image: url("../../content/icon/dic-employee.png");
+
+}
+.m-icon-add-employee{
+    background-image: url("../../content/icon/add.png");
+
+}
